@@ -1,0 +1,11 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <p>By: <%= comment.user.email %></p>
+    <p><strong>Commenter:</strong> <%= comment.commenter %></p>
+    <p><strong>Comment:</strong> <%= comment.body %></p>
+
+   <% if current_user == comment.user || current_user == @article.user %>
+    <%= button_to "Delete", article_comment_path(@article, comment), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm"%>
+  <% end %>
+  </div>
+</div>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Blog SAAS - New/Edit Article</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #36C5AD; /* Color de fondo similar al de la imagen */
+        }
+        .container {
+            background-color: #ffffff; /* Fondo blanco para el formulario */
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+        .header {
+            background-color: #324b66; /* Color de la cabecera en la imagen */
+            color: #ffffff;
+            padding: 10px 0;
+        }
+        .header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+        }
+        .footer {
+            background-color: #324b66; /* Mismo color que la cabecera */
+            color: #ffffff;
+            padding: 10px 0;
+            margin-top: 100px; /* Ajuste para mover la barra hacia abajo */
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Encabezado -->
+<div class="header text-center">
+    <h1>BLOG SAAS</h1>
+</div>
+
+<div class="container mt-5">
+    <!-- Título del formulario -->
+    <h2 class="text-center mb-4">New Article</h2>
+
+    <!-- Mostrar errores si existen -->
+    <% if @article.errors.any? %>
+        <div class="alert alert-danger">
+            <h4 class="alert-heading">Please fix the following errors:</h4>
+            <ul>
+                <% @article.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <!-- Formulario -->
+    <%= form_with model: @article, local: true do |f| %>
+        <div class="form-group">
+            <%= f.label :title, class: "font-weight-bold" %>
+            <%= f.text_field :title, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :text, class: "font-weight-bold" %>
+            <%= f.text_area :text, class: "form-control", rows: 5 %>
+        </div>
+
+        <div class="form-group text-center">
+            <%= f.submit "Create Article", class: "btn btn-primary" %>
+            <%= link_to 'Back', articles_path, class: "btn btn-secondary ml-2" %>
+        </div>
+    <% end %>
+</div>
+
+<!-- Pie de página -->
+<div class="footer text-center">
+    <p>INGENIERÍA EN TELEMATICA</p>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
